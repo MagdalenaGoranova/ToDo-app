@@ -1,47 +1,60 @@
-import TodoItem from "./TodoItem";
+
 import { useState, useEffect } from "react";
-import uniqid from 'uniqid'
+import TodoItem from "./TodoItem";
+import {createTodo} from '../services/todoService';
+
+const API_URL = 'http://localhost:8000/todos/api';
 
 export default function TodoList() {
-    const [todos, setTodos] = useState([
-        {id: 1, text: 'Clean', isDone: false}, 
-        {id: 2, text: 'Wash clothes', isDone: false}, 
-        {id: 3, text: 'Study React', isDone: false},
-    ]);
+    const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        console.log('Mounted');
-    }, []);
+        fetch(`${API_URL}`)
+        .then(res => res.json())
+        .then(todoResult => {
+            setTodos(Object.values(todoResult));
+        })
+        }, []);
 
     const onTodoInputBlur = (e) => {
         let todo = {
-            id: uniqid(),
-            text: e.target.value
+            text: e.target.value,
+            isDone: false,
         };
 
-        setTodos(oldTodos => [
-            ...oldTodos, 
-            todo
-        ]);
+        createTodo(todo)
+            .then(createdTodo => {
+                setTodos(oldTodos => [
+                    ...oldTodos,
+                    createdTodo
+                ]);
+                e.target.value = '';
+            }) 
+            .catch(err => {
+                console.log(err);
+            })
 
-        e.target.value = '';
-    }; 
-    const deleteTodoItemHandler = (id) => {
+        };
+    
+    const deleteTodoItemHandler = (e, id) => {
+        e.stopPropagation();
        setTodos(oldTodos => oldTodos.filter(todo => todo.id !== id));
 
     }
     const toggleTodoItemClickHandler = (id) => {
         setTodos(oldTodos => {
-            let selectedTodo = oldTodos.find(x => x.id === id);
-            let toggledTodo = {...selectedTodo, isDone: !selectedTodo.isDone}
-            let restTodos = oldTodos.filter(x => x.id !== id);
-
-            return [...restTodos, toggledTodo];
+            return oldTodos.map(todo => 
+                todo.id === id 
+                ? {...todo, isDone: !todo.isDone} 
+                : todo
+                );
         });
-    }
+    };
+
     return (
         <>
-            <input type="text" onBlur={onTodoInputBlur} name="todo"/>Add
+            <label htmlFor="todo-name">Add Todo</label>
+            <input type="text" id="todo-name" onBlur={onTodoInputBlur} name="todo"/>
             <ul>
                 {todos.map(todo => 
                 <TodoItem 
@@ -54,6 +67,5 @@ export default function TodoList() {
             </ul>
         </>
     );
-   
 
 };
