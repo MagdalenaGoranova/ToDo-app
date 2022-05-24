@@ -12,6 +12,7 @@ export default function TodoList() {
         fetch(`${API_URL}`)
         .then(res => res.json())
         .then(todoResult => {
+            //console.log(todoResult);
             setTodos(Object.values(todoResult));
         })
         }, []);
