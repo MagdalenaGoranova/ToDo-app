@@ -18,8 +18,8 @@ export default function TodoList() {
 
     const onTodoInputBlur = (e) => {
         let todo = {
-            text: e.target.value,
-            isDone: false,
+            task: e.target.value,
+            completed: false,
         };
 
         createTodo(todo)
@@ -45,7 +45,7 @@ export default function TodoList() {
         setTodos(oldTodos => {
             return oldTodos.map(todo => 
                 todo.id === id 
-                ? {...todo, isDone: !todo.isDone} 
+                ? {...todo, completed: !todo.completed} 
                 : todo
                 );
         });

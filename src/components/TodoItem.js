@@ -7,7 +7,7 @@ export default function TodoItem({
 }) {
 
     let listItemClasses = ['todo-item'];
-    if(todo.isDone) {
+    if(todo.completed) {
         listItemClasses.push('todo-item-completed');
     }
 
