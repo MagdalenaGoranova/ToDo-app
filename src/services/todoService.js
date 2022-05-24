@@ -1,7 +1,7 @@
-const API_URL = 'http://localhost:8000/todos/api';
+const API_URL = 'http://localhost:3030/jsonstore';
 
 export const createTodo = async (todo) => {
-    let response = await fetch(`${API_URL}`, {
+    let response = await fetch(`${API_URL}/todos`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

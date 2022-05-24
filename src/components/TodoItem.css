@@ -1,6 +1,15 @@
+
 .todo-item {
     cursor: pointer;
 }
 .todo-item-completed {
     text-decoration: line-through;
+}
+.delete-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px; 
+    color: black;
+    position: absolute;
+    
 }

@@ -2,14 +2,15 @@
 import { useState, useEffect } from "react";
 import TodoItem from "./TodoItem";
 import {createTodo} from '../services/todoService';
+import uniqid from 'uniqid';
 
-const API_URL = 'http://localhost:8000/todos/api';
+const API_URL = 'http://localhost:3030/jsonstore';
 
 export default function TodoList() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        fetch(`${API_URL}`)
+        fetch(`${API_URL}/todos`)
         .then(res => res.json())
         .then(todoResult => {
             //console.log(todoResult);
@@ -19,8 +20,9 @@ export default function TodoList() {
 
     const onTodoInputBlur = (e) => {
         let todo = {
-            task: e.target.value,
-            completed: false,
+            id: uniqid(),
+            text: e.target.value,
+            isDone: false,
         };
 
         createTodo(todo)
@@ -46,9 +48,9 @@ export default function TodoList() {
         setTodos(oldTodos => {
             return oldTodos.map(todo => 
                 todo.id === id 
-                ? {...todo, completed: !todo.completed} 
+                ? {...todo, isDone: !todo.isDone} 
                 : todo
-                );
+            );
         });
     };
 

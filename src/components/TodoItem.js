@@ -7,14 +7,14 @@ export default function TodoItem({
 }) {
 
     let listItemClasses = ['todo-item'];
-    if(todo.completed) {
+    if(todo.isDone) {
         listItemClasses.push('todo-item-completed');
     }
 
     return (
-     <li onClick={(e) => onClick(todo.id)} className={listItemClasses.join(' ')}>
+     <li onClick={() => onClick(todo.id)} className={listItemClasses.join(' ')}>
      {todo.text} 
-     <button onClick={(e) => onDelete(e, todo.id)}>x</button>
+     <button className='delete-btn' onClick={(e) => onDelete(e, todo.id)}><i class="fa-solid fa-trash-can"></i></button>
      </li>
     );
 }
