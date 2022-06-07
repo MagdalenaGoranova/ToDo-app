@@ -1,4 +1,4 @@
-import './TodoItem.css';
+import './TodoItem.css'
 
 export default function TodoItem({
     todo,
@@ -14,7 +14,7 @@ export default function TodoItem({
     return (
      <li onClick={() => onClick(todo.id)} className={listItemClasses.join(' ')}>
      {todo.text} 
-     <button className='delete-btn' onClick={(e) => onDelete(e, todo.id)}><i class="fa-solid fa-trash-can"></i></button>
+     <button className='delete-btn' onClick={(e) => onDelete(e, todo.id)}><i className="fa-solid fa-trash-can"></i></button>
      </li>
     );
 }

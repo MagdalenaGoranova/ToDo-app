@@ -1,4 +1,54 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Varela+Round&display=swap');
+body {
+    margin:0px;
 }
+.todo-app-container {
+    margin: 0; 
+    width: 100vw;
+    height: 1000px;
+    background-color: #191B1F;
+    color: white;
+    font-family: 'Varela Round', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title {
+    font-family: 'Grape Nuts', cursive; 
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-left: 43px; 
+
+}
+#todo-name-label {
+    color:  #E80A71;
+    font-size: 1.2rem;
+    margin-left: 30px;
+}
+.fa-trash-can {
+    color: #E80A71;
+    font-size: 1rem;
+    background-color: #191B1F;
+
+}
+.delete-btn {
+    border: none;
+    background-color: #191B1F;
+    cursor: pointer;
+}
+.todo-list-ul {
+   list-style: none;
+
+}
+#todo-name {
+    margin-top: 10px;
+    height: 35px;
+    width: 19%;
+    border-radius: 12px;
+    margin-left: 38px;
+}
+
+
+
 

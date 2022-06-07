@@ -1,0 +1,14 @@
+.todo-item {
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-family: 'Grape Nuts', cursive; 
+    border: 0.5px solid rgba(255, 255, 255, 0.19);
+    border-radius: 12px;
+    margin-bottom: 5px;
+    padding-left: 15px;
+   
+}
+
+.todo-item-completed {
+    text-decoration: line-through;
+}

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
-import TodoItem from "./TodoItem";
-import {createTodo} from '../services/todoService';
+import TodoItem from "../TodoItemComp/TodoItem";
+import {createTodo} from '../../services/todoService';
 import uniqid from 'uniqid';
 
 const API_URL = 'http://localhost:3030/jsonstore';
@@ -56,9 +56,10 @@ export default function TodoList() {
 
     return (
         <>
-            <label htmlFor="todo-name">Add Todo</label>
+            <h1 className="title"> My ToDo List </h1>
+            <label id="todo-name-label" htmlFor="todo-name">Add Todo</label>
             <input type="text" id="todo-name" onBlur={onTodoInputBlur} name="todo"/>
-            <ul>
+            <ul className="todo-list-ul">
                 {todos.map(todo => 
                 <TodoItem 
                 key={todo.id} 
